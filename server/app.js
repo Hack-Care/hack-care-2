@@ -1,12 +1,23 @@
 ﻿const createError = require("http-errors");
 const express = require("express");
+const { ApolloServer, gql } = require('apollo-server-express');
 const path = require("path");
 const cookieParser = require("cookie-parser");	
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 
+// Construct a schema, using GraphQL schema language
+const types = require("./graphql/types");
+const typeDefs = gql(types);
+
+const resolvers = require("./graphql/resolvers");
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
 const app = express();
+
+server.applyMiddleware({ app });
 
 app.use(logger("dev"));
 app.use(express.json());
