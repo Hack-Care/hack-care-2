@@ -5,7 +5,15 @@
 const debug = require("debug")("WebTemplateStudioExpress:server");
 const http = require("http");
 const app = require("./app");
+const mongo = require("./database/mongo");
 const CONSTANTS = require("./constants");
+
+/**
+ * Connect to mongo server
+ */
+mongo.connectToServer((err) => {
+  if (err) throw err;
+});
 
 /**
  * Get port from environment and store in Express.
