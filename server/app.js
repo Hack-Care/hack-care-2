@@ -1,5 +1,9 @@
 ﻿const createError = require("http-errors");
 const express = require("express");
+const session = require("express-session");
+const passport = require('passport');
+const { Strategy: LocalStrategy } = require('passport-local');
+const csrf = require('csurf');
 const { ApolloServer, gql } = require('apollo-server-express');
 const path = require("path");
 const cookieParser = require("cookie-parser");	
@@ -24,10 +28,13 @@ const app = express();
 server.applyMiddleware({ app });
 
 app.use(logger("dev"));
+app.use(session({secret: 'cats', resave: false, saveUninitialized: false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "build")));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 const indexRouter = require("./routes/index");
