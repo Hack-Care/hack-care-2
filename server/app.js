@@ -32,6 +32,7 @@ app.use(session({secret: 'cats', resave: false, saveUninitialized: false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(csrf({ cookie: true }))
 app.use(express.static(path.resolve(__dirname, "build")));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +42,7 @@ const indexRouter = require("./routes/index");
 
 app.use("/api", indexRouter);
 app.get("*", (req, res) => {
+  res.cookie('XSRF-TOKEN', req.csrfToken())
   res.sendFile("build/index.html", { root: __dirname });
 });
 
