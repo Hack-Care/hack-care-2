@@ -2,7 +2,6 @@
 const express = require("express");
 const session = require("express-session");
 const passport = require('passport');
-const { Strategy: LocalStrategy } = require('passport-local');
 const csrf = require('csurf');
 const { ApolloServer, gql } = require('apollo-server-express');
 const path = require("path");
@@ -14,6 +13,11 @@ const mongo = require("./database/mongo");
  * Connect to mongo server
  */
 mongo.connectToServer();
+
+/**
+ * Passport config
+ */
+const passportConfig = require('./config/passport');
 
 // Construct a schema, using GraphQL schema language
 const types = require("./graphql/types");
@@ -28,7 +32,7 @@ const app = express();
 server.applyMiddleware({ app });
 
 app.use(logger("dev"));
-app.use(session({secret: 'cats', resave: false, saveUninitialized: false}));
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: false }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -37,6 +41,25 @@ app.use(express.static(path.resolve(__dirname, "build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+/**
+ * Auth routes.
+ */
+// app.get('/login', userController.getLogin);
+// app.post('/login', userController.postLogin);
+// app.get('/logout', userController.logout);
+// app.get('/forgot', userController.getForgot);
+// app.post('/forgot', userController.postForgot);
+// app.get('/reset/:token', userController.getReset);
+// app.post('/reset/:token', userController.postReset);
+// app.get('/signup', userController.getSignup);
+// app.post('/signup', userController.postSignup);
+// app.get('/account/verify', passportConfig.isAuthenticated, userController.getVerifyEmail);
+// app.get('/account/verify/:token', passportConfig.isAuthenticated, userController.getVerifyEmailToken);
+// app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+// app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+// app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
+// app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 
 const indexRouter = require("./routes/index");
 

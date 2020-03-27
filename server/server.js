@@ -8,6 +8,20 @@ const app = require("./app");
 const CONSTANTS = require("./constants");
 
 /**
+ * Send mail through sendgrid
+ */
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(CONSTANTS.SENDGRID.APIKEY);
+const msg = {
+  to: 'test@example.com',
+  from: 'test@example.com',
+  subject: 'Sending with Twilio SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+};
+sgMail.send(msg);
+
+/**
  * Get port from environment and store in Express.
  */
 

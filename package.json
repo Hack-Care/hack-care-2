@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sendgrid/mail": "^6.5.5",
     "apollo-server-express": "^2.11.0",
     "assert": "^2.0.0",
     "bootstrap": "4.4.1",
