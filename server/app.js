@@ -5,7 +5,11 @@ const path = require("path");
 const cookieParser = require("cookie-parser");	
 const logger = require("morgan");
 
-const indexRouter = require("./routes/index");
+const mongo = require("./database/mongo");
+/**
+ * Connect to mongo server
+ */
+mongo.connectToServer();
 
 // Construct a schema, using GraphQL schema language
 const types = require("./graphql/types");
@@ -24,6 +28,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, "build")));
+
+
+const indexRouter = require("./routes/index");
 
 app.use("/api", indexRouter);
 app.get("*", (req, res) => {
