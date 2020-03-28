@@ -11,7 +11,7 @@ const CONSTANTS = require("./constants");
  * Send mail through sendgrid
  */
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(CONSTANTS.SENDGRID.APIKEY);
+sgMail.setApiKey(CONSTANTS.SENDGRID.KEY);
 const msg = {
   to: 'test@example.com',
   from: 'test@example.com',
