@@ -7,6 +7,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const path = require("path");
 const cookieParser = require("cookie-parser");	
 const logger = require("morgan");
+const validator = require('validator');
 
 const mongo = require("./database/mongo");
 /**
@@ -41,10 +42,52 @@ app.use(express.static(path.resolve(__dirname, "build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post('/SignUp', (req, res) => {
-  console.log(req.body);
+app.post('/SignUp', (req, res, next) => {
+  if (!validator.isEmail(req.body.email)) return next(new Error('Invalid email!'));
+  if (req.body.password !== req.body.confirmPassword) return next(new Error('Password does not match'));
+  if (!req.body.interests) return next(new Error('Please select at least one interest'));
+
+  const collection = mongo.getDb().collection("users");
+  
+  const user = {
+    email: req.body.email,
+    password: req.body.password,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    title: req.body.title,
+    occupation: req.body.occupation,
+    intro: req.body.intro,
+    interests: typeof req.body.interests === 'string' ? [req.body.interests] : req.body.interests 
+  }
+
+  collection.findOne({ email: user.email }, {}, (err, existingUser) => {
+    if (err) return next(err);
+    if (existingUser) return next(new Error('User already exists'));
+    collection.insertOne(user, {}, err => {
+      if (err) return next(err);
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect('/');
+      });
+    });
+  })
 });
 
+app.get('/userEmail', (req, res) => {
+  if (req.user) res.send(req.user.email);
+  else res.send(null);
+});
+
+app.post('/logout', (req, res) => {
+  req.logout();
+  req.session.destroy((err) => {
+    if (err) console.log('Error : Failed to destroy the session during logout.', err);
+    req.user = null;
+    res.redirect('/');
+  });
+});
 
 /**
  * Auth routes.

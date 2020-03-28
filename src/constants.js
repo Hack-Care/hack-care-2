@@ -20,4 +20,7 @@ CONSTANTS.ENDPOINT.MASTERDETAIL = "/api/masterdetail";
 
 CONSTANTS.ENDPOINT.GRID = "/api/grid";
 
+CONSTANTS.ENDPOINT.USER_EMAIL = "/userEmail"
+CONSTANTS.ENDPOINT.LOGOUT = "/logout";
+
 export default CONSTANTS;

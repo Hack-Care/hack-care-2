@@ -3,12 +3,12 @@ const { Strategy: LocalStrategy } = require('passport-local');
 const mongo = require('../database/mongo');
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-  const collection = mongo.getDb().getCollection("users");
-  collection.findOne(id, {}, (err, user) => {
+passport.deserializeUser((user, done) => {
+  const collection = mongo.getDb().collection("users");
+  collection.findOne({ email: user.email }, {}, (err, user) => {
     done(err, user);
   });
 });
@@ -17,7 +17,7 @@ passport.deserializeUser((id, done) => {
  * Sign in using Email and Password.
  */
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  const collection = mongo.getDb().getCollection("users");
+  const collection = mongo.getDb().collection("users");
   collection.findOne({email: email.toLowerCase()}, {}, (err, user) => {
     if (err) { return done(err); }
     if (!user) {
