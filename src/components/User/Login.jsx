@@ -1,21 +1,25 @@
 import React from 'react';
+import Cookies from 'js-cookie';
+import CONSTANTS from '../../constants';
 
 const LogIn = () => {
   return (
     <div className="container">
       <div className="row">
-        <div class="col-md-4 offset-md-4">
-          <form>
+        <div className="col-md-4 offset-md-4">
+          <form id="sign-in-form" action={CONSTANTS.ENDPOINT.LOGIN} method="POST">
             <h3>Sign In</h3>
+
+            <input type="hidden" name="_csrf" value={Cookies.get("x-csrf-token")} />
 
             <div className="form-group">
                 <label>Email address</label>
-                <input type="email" className="form-control" placeholder="Enter email" />
+                <input type="email" name="email" className="form-control" placeholder="Enter email" />
             </div>
 
             <div className="form-group">
                 <label>Password</label>
-                <input type="password" className="form-control" placeholder="Enter password" />
+                <input type="password" name="password" className="form-control" placeholder="Enter password" />
             </div>
 
             <div className="form-group">

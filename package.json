@@ -6,6 +6,7 @@
     "@sendgrid/mail": "^6.5.5",
     "apollo-server-express": "^2.11.0",
     "assert": "^2.0.0",
+    "bcrypt": "^4.0.1",
     "bootstrap": "4.4.1",
     "classnames": "2.2.6",
     "cookie-parser": "1.4.4",

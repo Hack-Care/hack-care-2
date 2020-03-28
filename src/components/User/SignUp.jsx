@@ -1,13 +1,14 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import CONSTANTS from '../../constants';
 
 const SignUp = () => {
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          <form id="sign-up-form" method="POST">
+          <form id="sign-up-form" action={CONSTANTS.ENDPOINT.SIGN_UP} method="POST">
             <h3>Sign Up</h3>
 
             <input type="hidden" name="_csrf" value={Cookies.get("x-csrf-token")} />
