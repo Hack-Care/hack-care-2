@@ -1,6 +1,6 @@
-const CONSTANTS = require('../constants');
-const { MongoClient } = require('mongodb');
-const assert = require('assert');
+const CONSTANTS = require("../constants");
+const { MongoClient } = require("mongodb");
+const assert = require("assert");
 
 // should read from environment variable for production
 const mongoUrl = CONSTANTS.MONGODB.URL;
@@ -15,9 +15,9 @@ var _db;
 module.exports = {
   connectToServer: () => {
     const options = {
-        useNewUrlParser: true
+      useNewUrlParser: true
     };
-    MongoClient.connect(url , options, (err, client) => {
+    MongoClient.connect(url, options, (err, client) => {
       assert.equal(null, err);
       _db = client.db(database);
     });
