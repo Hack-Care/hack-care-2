@@ -3,10 +3,12 @@ const { MongoClient } = require('mongodb');
 const assert = require('assert');
 
 // should read from environment variable for production
-const mongoUrl = CONSTANTS.MONGODB.URL;
-const database = CONSTANTS.MONGODB.DATABASE
+const mongoUrl = process.env.DBURL || CONSTANTS.MONGODB.URL;
+const database = CONSTANTS.MONGODB.DATABASE;
+const username = process.env.DBUSERNAME;
+const password = process.env.DBPASSWORD;
 
-const url = `mongodb://${mongoUrl}`;
+const url = username ? `mongodb+srv://${mongoUrl}` : `mongodb+srv://${username}:${password}@${mongoUrl}`;
 
 var _db;
 
