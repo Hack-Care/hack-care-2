@@ -41,6 +41,10 @@ app.use(express.static(path.resolve(__dirname, "build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.post('/SignUp', (req, res) => {
+  console.log(req.body);
+});
+
 
 /**
  * Auth routes.
@@ -65,7 +69,7 @@ const indexRouter = require("./routes/index");
 
 app.use("/api", indexRouter);
 app.get("*", (req, res) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken())
+  res.cookie('x-csrf-token', req.csrfToken());
   res.sendFile("build/index.html", { root: __dirname });
 });
 

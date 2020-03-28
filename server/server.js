@@ -19,7 +19,7 @@ const msg = {
   text: 'and easy to do anywhere, even with Node.js',
   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
 };
-sgMail.send(msg);
+// sgMail.send(msg);
 
 /**
  * Get port from environment and store in Express.
