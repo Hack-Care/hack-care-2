@@ -47,7 +47,7 @@ app.use('/auth', authRouter);
 const indexRouter = require("./routes/index");
 
 app.use("/api", indexRouter);
-app.get("*", (req, res) => {
+app.all("*", (req, res) => {
   res.cookie('x-csrf-token', req.csrfToken());
   res.sendFile("build/index.html", { root: __dirname });
 });

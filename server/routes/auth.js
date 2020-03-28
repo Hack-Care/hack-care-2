@@ -66,6 +66,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/user-email', (req, res) => {
+  res.cookie('x-csrf-token', req.csrfToken());
   if (req.user) res.send(req.user.email);
   else res.send(null);
 });
