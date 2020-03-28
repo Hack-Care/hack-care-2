@@ -1,27 +1,48 @@
-﻿import React from "react";
-import { Switch, Route } from "react-router-dom";
+﻿import React, { useState, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
 import Blank from "./components/Blank";
-
 import Master_Detail from "./components/Master_Detail";
-
 import List from "./components/List";
-
 import Grid from "./components/Grid";
+import LogIn from "./components/User/Login";
+import SignUp from "./components/User/SignUp";
+import CONSTANTS from './constants';
 
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
+    const [userEmail, setUserEmail] = useState(null);
+    useEffect(() => {
+      fetch(CONSTANTS.ENDPOINT.USER_EMAIL)
+      .then(response => {
+        response.text().then(email => {
+          setUserEmail(email)
+        }).catch(err => {
+          console.log(err);
+        });
+      });
+    });
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        userEmail
+          ? <Component {...props} />
+          : <Redirect to='/Login' />
+      )} />
+    )
+
     return (
       <React.Fragment>
-        <NavBar />
+        <NavBar userEmail={userEmail} setUserEmail={setUserEmail} />
         <Switch>
           <Route exact path = "/" component = { Blank } />
           <Route path = "/Master_Detail" component = { Master_Detail } />
-          <Route path = "/List" component = { List } />
-          <Route path = "/Grid" component = { Grid } />
+          <PrivateRoute path = "/List" component = { List } />
+          <PrivateRoute path = "/Grid" component = { Grid } />
+          <Route path = "/Login" component = { LogIn } />
+          <Route path = "/SignUp" component = { SignUp } />
         </Switch>
         <Footer />
       </React.Fragment>

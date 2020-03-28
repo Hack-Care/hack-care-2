@@ -1,10 +1,20 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
+import CONSTANTS from "../../constants";
+import Cookies from 'js-cookie';
 
 //TODO Web Template Studio: Add a new link in the NavBar for your page here.
 // A skip link is included as an accessibility best practice. For more information visit https://www.w3.org/WAI/WCAG21/Techniques/general/G1.
-const NavBar = () => {
+const NavBar = (navbarProps) => {
+  const { userEmail, setUserEmail } = navbarProps;
+  const handleLogout = () => {
+    fetch(CONSTANTS.ENDPOINT.LOGOUT, {method: 'POST', headers: {
+      "x-csrf-token": Cookies.get('x-csrf-token')
+    }});
+    setUserEmail(null);
+  }
+
   return (
     <React.Fragment>
       <div className={styles.skipLink}>
@@ -28,6 +38,32 @@ const NavBar = () => {
             Grid
           </Link>
         </div>
+        {userEmail ?
+        <div className="collapse navbar-collapse" id="userAccountLogin">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <span className="align-middle">
+                {userEmail}
+              </span>
+            </li>
+            <li className="nav-item">
+              <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </div>
+        :
+        <div className="collapse navbar-collapse" id="userAccountLogin">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to={"/LogIn"}>Login</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to={"/SignUp"}>Sign up</Link>
+            </li>
+          </ul>
+        </div>
+        }
+        
       </nav>
     </React.Fragment>
   );

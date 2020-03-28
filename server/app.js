@@ -41,31 +41,14 @@ app.use(express.static(path.resolve(__dirname, "build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-/**
- * Auth routes.
- */
-// app.get('/login', userController.getLogin);
-// app.post('/login', userController.postLogin);
-// app.get('/logout', userController.logout);
-// app.get('/forgot', userController.getForgot);
-// app.post('/forgot', userController.postForgot);
-// app.get('/reset/:token', userController.getReset);
-// app.post('/reset/:token', userController.postReset);
-// app.get('/signup', userController.getSignup);
-// app.post('/signup', userController.postSignup);
-// app.get('/account/verify', passportConfig.isAuthenticated, userController.getVerifyEmail);
-// app.get('/account/verify/:token', passportConfig.isAuthenticated, userController.getVerifyEmailToken);
-// app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-// app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
-// app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
-// app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
 
 const indexRouter = require("./routes/index");
 
 app.use("/api", indexRouter);
 app.get("*", (req, res) => {
-  res.cookie('XSRF-TOKEN', req.csrfToken())
+  res.cookie('x-csrf-token', req.csrfToken());
   res.sendFile("build/index.html", { root: __dirname });
 });
 
