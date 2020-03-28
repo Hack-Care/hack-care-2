@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import CONSTANTS from '../../constants';
 
@@ -30,8 +31,8 @@ const LogIn = () => {
             </div>
 
             <button type="submit" className="btn btn-primary btn-block">Submit</button>
-            <p className="forgot-password text-right">
-                Forgot password?
+            <p className="text-right">
+                Not an user? <Link to={"/SignUp"}>Register</Link>
             </p>
           </form>
         </div>

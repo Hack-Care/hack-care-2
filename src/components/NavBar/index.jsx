@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+﻿import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 import CONSTANTS from "../../constants";
@@ -6,19 +6,8 @@ import Cookies from 'js-cookie';
 
 //TODO Web Template Studio: Add a new link in the NavBar for your page here.
 // A skip link is included as an accessibility best practice. For more information visit https://www.w3.org/WAI/WCAG21/Techniques/general/G1.
-const NavBar = () => {
-  const [userEmail, setUserEmail] = useState(null);
-  useEffect(() => {
-    fetch(CONSTANTS.ENDPOINT.USER_EMAIL)
-    .then(response => {
-      response.text().then(email => {
-        setUserEmail(email)
-      }).catch(err => {
-        console.log(err);
-      });
-    });
-  });
-
+const NavBar = (navbarProps) => {
+  const { userEmail, setUserEmail } = navbarProps;
   const handleLogout = () => {
     fetch(CONSTANTS.ENDPOINT.LOGOUT, {method: 'POST', headers: {
       "x-csrf-token": Cookies.get('x-csrf-token')
