@@ -8,7 +8,7 @@ const database = CONSTANTS.MONGODB.DATABASE;
 const username = process.env.DBUSERNAME;
 const password = process.env.DBPASSWORD;
 
-const url = `mongodb://{username}:{password}@${mongoUrl}`;
+const url = `mongodb+srv://${username}:${password}@${mongoUrl}`;
 
 var _db;
 

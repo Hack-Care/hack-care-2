@@ -12,7 +12,7 @@ const mongo = require("./database/mongo");
 /**
  * Connect to mongo server
  */
-//mongo.connectToServer();
+mongo.connectToServer();
 
 /**
  * Passport config
