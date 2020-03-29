@@ -43,6 +43,7 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
+    "postinstall": "yarn build || npm run build",
     "start": "concurrently \"yarn start-frontend || npm run start-frontend\" \"yarn start-backend || npm run start-backend\"",
     "start-backend": "node server/server.js",
     "start-frontend": "react-scripts start",
