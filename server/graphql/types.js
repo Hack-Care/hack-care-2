@@ -1,8 +1,7 @@
 const types = `
   type Query {
-    user(email: String!): String
-    series(id: ID!): Series
-    lesson(email: String!): Lesson
+    user(email: String!): User
+    class(email: String!): Class
   }
   
   type Mutation {
@@ -14,18 +13,11 @@ const types = `
       occupation: String!
       intro: String
       profilePicture: String
+      classes: [ID]!
     ): Boolean
     
-    createSeries(
-      hosts: String!
-      topic: String!
-      description: String!
-      lessons: String!
-    ): Boolean
-    
-    createLesson(
-      series: String
-      hostEmail: String!
+    createClass(
+      host: ID!
       dateTime: String!
       duration: String!
       link: String!
@@ -33,10 +25,15 @@ const types = `
       topic: String!
       description: String!
     ): Boolean
+    
+    addClassToUser(
+      host: ID!
+      newClass: ID!
+    ): Boolean
   }
   
   type User {
-    id: ID!
+    _id: ID!
     email: String!
     firstName: String!
     lastName: String!
@@ -44,33 +41,18 @@ const types = `
     occupation: String!
     intro: String
     profilePicture: String
-    lessonSeries: [Series]!
+    classes: [ID]!
   }
   
-  type Series {
-    id: ID!
-    hosts: [User]!
-    topic: String!
-    description: String!
-    lessons: [Lesson]!
-  }
-  
-  type Lesson {
-    id: ID!
-    series: Series
-    hostEmail: String!
+  type Class {
+    _id: ID!
+    host: ID!
     dateTime: String!
     duration: String!
     link: String!
     topicClass: String!
     topic: String!
     description: String!
-  }
-
-  type UserUpdateResponse {
-    success: Boolean!
-    message: String
-    user: User
   }
 
   enum Titles {
