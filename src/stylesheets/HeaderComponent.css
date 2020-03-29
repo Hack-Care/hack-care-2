@@ -1,0 +1,14 @@
+.headerTitle {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.headerBar {
+    margin-bottom: 50px;
+}
+
+.welcome {
+    margin-right: 150px;
+    float: right;
+}

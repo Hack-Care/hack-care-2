@@ -10,6 +10,7 @@ import { HttpLink } from "apollo-link-http";
 import {ApolloProvider} from "@apollo/react-hooks";
 import {BrowserRouter} from "react-router-dom";
 import Cookies from 'js-cookie';
+import {TopicSearch} from "./components/topicSearch/TopicSearch";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -31,15 +32,16 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <BrowserRouter>
-        <ApolloProvider client={client}>
-          <App />
-        </ApolloProvider>
+        {/*<ApolloProvider client={client}>*/}
+        {/*  <App />*/}
+        {/*</ApolloProvider>*/}
+        <TopicSearch/>
     </BrowserRouter>,
   document.getElementById("root")
 );
 
-/**  
- * Be aware that the website will only update to the latest version on the 2nd page visit if it as already cached 
+/**
+ * Be aware that the website will only update to the latest version on the 2nd page visit if it as already cached
  * Learn more about service workers in React: https://create-react-app.dev/docs/making-a-progressive-web-app
  */
 registerServiceWorker();
