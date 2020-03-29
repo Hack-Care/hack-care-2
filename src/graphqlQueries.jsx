@@ -24,6 +24,23 @@ QUERIES.GET_USER_BASIC_INFO = gql`
             _id
             firstName
             lastName
+            interests
+        }
+    }
+`;
+
+QUERIES.GET_CLASSES = gql`
+    query {
+        classes {
+            _id
+            host
+            hostName
+            dateTime
+            duration
+            link
+            topicClass
+            topic
+            description
         }
     }
 `;

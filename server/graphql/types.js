@@ -2,6 +2,7 @@ const types = `
   type Query {
     user(email: String!): User
     class(email: String!): Class
+    classes: [Class]
   }
   
   type Mutation {
@@ -14,6 +15,7 @@ const types = `
       intro: String
       profilePicture: String
       classes: [ID]!
+      interests: [String]!
     ): Boolean
     
     createClass(
@@ -43,6 +45,7 @@ const types = `
     intro: String
     profilePicture: String
     classes: [ID]!
+    interests: [String]!
   }
   
   type Class {

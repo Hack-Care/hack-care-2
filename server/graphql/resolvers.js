@@ -10,6 +10,10 @@ const resolvers = {
         class: async (_, data) => {
             const db = mongo.getDb();
             return await db.collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
+        },
+        classes: async () => {
+            const db = mongo.getDb();
+            return await db.collection('classes').find().toArray();
         }
     },
     Mutation: {
@@ -23,7 +27,8 @@ const resolvers = {
                 "occupation": data.occupation,
                 "intro": data.intro,
                 "profilePicture": data.profilePicture,
-                "classes": []
+                "classes": [],
+                "interests": data.interests
             });
             return result.insertedCount === 1;
         },
