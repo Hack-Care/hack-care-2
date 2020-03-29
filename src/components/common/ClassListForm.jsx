@@ -3,23 +3,24 @@ import { UIConstants } from "../../UIConstants";
 import moment from 'moment';
 
 const ClassListForm = ({ classList, loading, called }) => {
-  const { TOPIC_CLASS, TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE, DESCRIPTION } = UIConstants;
+  const { REGISTER, TOPIC_CLASS, TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE, DESCRIPTION } = UIConstants;
 
   const getRows = () => {
     if (loading) {
       return (
         <tr>
-          <td colSpan="6">Loading...</td>
+          <td colSpan="7">Loading...</td>
         </tr>);
     } else if (!called) {
       return (
         <tr>
-          <td colSpan="6" className="text-center">Click Search button to retrieve lessons</td>
+          <td colSpan="7" className="text-center">Click Search button to retrieve lessons</td>
         </tr>);
     } else {
       return (
         classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
           <tr key={index}>
+            <td><input name={topicClass} type="checkbox" /></td>
             <td>{topicClass}</td>
             <td>{topic}</td>
             <td>{hostName}</td>
@@ -35,6 +36,7 @@ const ClassListForm = ({ classList, loading, called }) => {
     <table className='table table-sm table-striped'>
       <thead>
         <tr className='formHeader'>
+          <th>{REGISTER}</th>
           <th>{TOPIC_CLASS}</th>
           <th>{TOPIC_TITLE}</th>
           <th>{INSTRUCTOR_TITLE}</th>

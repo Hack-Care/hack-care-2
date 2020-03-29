@@ -1,6 +1,5 @@
 export class UIConstants {
     static CLASS_SEARCH_TITLE = `What class would you like to sign up for?`;
-    static USER_CLASS_TITLE = `Here are the classes that you are hosting`;
     static TOPIC_CLASS = 'Topic class';
     static TOPIC = `Topic`;
     static INSTRUCTOR = 'Instructor';
@@ -10,5 +9,6 @@ export class UIConstants {
     static DURATION_TITLE = 'Duration';
     static START_DATE = 'Start date';
     static END_DATE = 'End date';
-    static DESCRIPTION = 'Description'
+    static DESCRIPTION = 'Description';
+    static REGISTER = '';
 }
