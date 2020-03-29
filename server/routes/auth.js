@@ -39,7 +39,7 @@ router.post('/sign-up', async (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.redirect(user.interests.includes('instructor') ? '/CreateClass?routeFrom=Login' : '/');
       });
     } catch (err) {
       return next(err);
