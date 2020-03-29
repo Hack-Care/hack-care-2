@@ -40,9 +40,6 @@ const NavBar = (navbarProps) => {
           <Link className="nav-item nav-link active" to="CreateClass">
             Create class
           </Link>
-          <Link className="nav-item nav-link active" to="CreateSeries">
-            Create series
-          </Link>
         </div>
         {userEmail ?
         <div className="collapse navbar-collapse" id="userAccountLogin">
