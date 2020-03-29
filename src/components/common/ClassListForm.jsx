@@ -1,7 +1,8 @@
 import React from 'react'
 import { UIConstants } from "../../UIConstants";
+import moment from 'moment';
 
-const ClassListForm = ({ classList }) => {
+const ClassListForm = ({ classList, loading }) => {
   const { TOPIC_CLASS, TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE, DESCRIPTION } = UIConstants;
   return (
     <table className='table table-sm table-striped'>
@@ -16,12 +17,17 @@ const ClassListForm = ({ classList }) => {
       </tr>
       </thead>
       <tbody>
-      {classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
+      {loading ? 
+      <tr>
+        <td colSpan="6">Loading...</td>
+      </tr>
+      :
+      classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
         <tr key={index}>
           <td>{topicClass}</td>
           <td>{topic}</td>
           <td>{hostName}</td>
-          <td>{new Date(Date.parse(dateTime)).toLocaleString()}</td>
+          <td>{moment(dateTime).format('MMM Do YYYY, h:mm a')}</td>
           <td>{duration}</td>
             <td>{description}</td>
         </tr>

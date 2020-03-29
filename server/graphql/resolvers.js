@@ -15,9 +15,9 @@ const resolvers = {
         classes: async (_, data) => {
             const db = mongo.getDb();
             const query = {};
-            if (data.topicClass) query.topicClass = data.topicClass;
-            if (data.topic) query.topic = data.topic;
-            if (data.instructor) query.hostName = data.instructor;
+            if (data.topicClass) query.topicClass = new RegExp(`${data.topicClass}`, 'i');
+            if (data.topic) query.topic = new RegExp(`^${data.topic}$`, 'i');
+            if (data.hostName) query.hostName = new RegExp(`${data.hostName}`, 'i');
             const classes = await db.collection('classes').find(query).toArray();
             // TODO should filter in DB query instead, for this maybe we need to store dateTime as Date
             return classes.filter(c => {

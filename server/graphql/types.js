@@ -5,7 +5,7 @@ const types = `
     classes(
       topic: String
       topicClass: String
-      instructor: String
+      hostName: String
       startDate: String
       endDate: String
     ): [Class]
