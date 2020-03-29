@@ -3,13 +3,10 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import CreateClass from "./components/CreateClass";
-import Master_Detail from "./components/Master_Detail";
-import List from "./components/List";
-import Grid from "./components/Grid";
 import LogIn from "./components/User/Login";
 import SignUp from "./components/User/SignUp";
 import LandingPage from "./components/LandingPage"
-import { TopicSearch } from "./components/topicSearch/TopicSearch";
+import TopicSearch from "./components/TopicSearch/TopicSearch";
 import CONSTANTS from './constants';
 
 //TODO Web Template Studio: Add routes for your new pages here.
