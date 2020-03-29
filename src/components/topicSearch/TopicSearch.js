@@ -2,7 +2,7 @@ import * as React from 'react';
 import '../../stylesheets/index.scss'
 import {SearchItem} from "./SearchItem";
 import {HeaderComponent} from "../common/HeaderComponent";
-import {Constants} from "../Constants";
+import {UIConstants} from "../../UIConstants";
 import {ClassListForm} from "../common/ClassListForm";
 import {Course} from "../../models/Course";
 import {DateInput} from "../common/DateInput";
@@ -44,15 +44,15 @@ export class TopicSearch extends React.Component<ClassSearchProps> {
 
         return (
             <div>
-                <HeaderComponent title={Constants.CLASS_SEARCH_TITLE}/>
+                <HeaderComponent title={UIConstants.CLASS_SEARCH_TITLE}/>
                 <section className="mainSection">
                     <table>
                         <td className='searchColumn'>
-                            <SearchItem searchTitle = {Constants.TOPIC_CLASS} />
-                            <SearchItem searchTitle = {Constants.TOPIC} />
-                            <SearchItem searchTitle = {Constants.INSTRUCTOR} />
-                            <DateInput dateTitle={Constants.START_DATE} />
-                            <DateInput dateTitle={Constants.END_DATE} />
+                            <SearchItem searchTitle = {UIConstants.TOPIC_CLASS} />
+                            <SearchItem searchTitle = {UIConstants.TOPIC} />
+                            <SearchItem searchTitle = {UIConstants.INSTRUCTOR} />
+                            <DateInput dateTitle={UIConstants.START_DATE} />
+                            <DateInput dateTitle={UIConstants.END_DATE} />
                         </td>
                         <td>
                             <ClassListForm classList={classList} isStudent={isStudent}/>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {Course} from "../../models/Course";
-import {Constants} from "../Constants";
+import {UIConstants} from "../../UIConstants";
 
 export interface ClassListFormProps {
     classList: Course[];
@@ -23,10 +23,10 @@ export class ClassListForm extends React.Component<ClassListFormProps> {
         return (
             <table className='formTable'>
                 <tr className='formHeader'>
-                    <CourseFormRow content={Constants.TOPIC_TITLE} />
-                    {isStudent && <CourseFormRow content={Constants.INSTRUCTOR_TITLE} />}
-                    <CourseFormRow content={Constants.DATE_TIME_TITLE} />
-                    <CourseFormRow content={Constants.DURATION_TITLE} />
+                    <CourseFormRow content={UIConstants.TOPIC_TITLE} />
+                    {isStudent && <CourseFormRow content={UIConstants.INSTRUCTOR_TITLE} />}
+                    <CourseFormRow content={UIConstants.DATE_TIME_TITLE} />
+                    <CourseFormRow content={UIConstants.DURATION_TITLE} />
                 </tr>
                 {classList && classList.map((course,index) =>
                     <tr className={index%2 === 0 ? 'formRow': 'formRowGray'}>
