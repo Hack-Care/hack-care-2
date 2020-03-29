@@ -1,0 +1,17 @@
+.searchInput{
+    border-width: 0.1em;
+    border-color: black;
+    border-radius: 2em;
+    height: 2em;
+    margin-left: 2em;
+}
+
+.searchItem {
+    margin-bottom: 5px;
+}
+
+.title {
+    text-align: right;
+    width: 100px;
+}
+

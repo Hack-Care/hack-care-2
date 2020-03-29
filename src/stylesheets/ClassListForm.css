@@ -1,0 +1,20 @@
+.formTable {
+    border: 1px;
+    margin-left: 30px;
+}
+.formHeader {
+    background-color: dimgray;
+    color: white;
+}
+
+.tableCell {
+    width: 200px;
+}
+
+.formRow {
+    background-color: white;
+}
+
+.formRowGray {
+    background-color: lightgrey;
+}
