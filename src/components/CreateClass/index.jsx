@@ -1,8 +1,11 @@
 import React, {useState} from "react";
 import DateTimePicker from 'react-datetime-picker'
 import Cookies from "js-cookie";
+import {useQuery, useMutation} from "@apollo/react-hooks";
+import QUERIES from "../../graphqlQueries"
+import MUTATIONS from "../../graphqlMutations";
 
-const CreateClass = () => {
+const CreateClass = (props) => {
     const [dateTimeField, setDateTimeField] = useState("");
 
     const handleChange = (e) => {
@@ -11,16 +14,33 @@ const CreateClass = () => {
     const handleClear = () => {
         document.getElementById("create-class-form").reset();
     };
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createClass({variables: {
+            host: queryData.user._id,
+            dateTime: dateTimeField,
+            duration: e.target.duration.value,
+            link: e.target.link.value,
+            topicClass: e.target.topicClass.value,
+            topic: e.target.topic.value,
+            description: e.target.description.value
+        }});
+        document.location.href="/";
     };
+    const {error: queryError, data: queryData} = useQuery(QUERIES.GET_USER_BASIC_INFO, {
+        variables: { email: props.userEmail }
+    });
+    const [createClass] = useMutation(MUTATIONS.CREATE_CLASS);
+    if (queryError) {
+        console.log(queryError)
+    }
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">
             <form onSubmit={handleSubmit} className="container" id="create-class-form">
               <input type="hidden" name="_csrf" value={Cookies.get("x-csrf-token")} />
-              <label>Welcome tester!</label>
+              <label>Welcome {queryData ? queryData.user.firstName : ""}!</label>
               <h3>What would you like to teach?</h3>
               <div className="row">
                 <div className="col-md-10">
@@ -39,7 +59,7 @@ const CreateClass = () => {
                   <div className="form-group row">
                     <label className="col-md-4 text-right">Date & Time</label>
                     <div className="col-md-8">
-                      <DateTimePicker onChange={handleChange} value={dateTimeField} name='date'/>
+                      <DateTimePicker onChange={handleChange} value={dateTimeField} name='dateTime'/>
                     </div>
                   </div>
                   <div className="form-group row">
