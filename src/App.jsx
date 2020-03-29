@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import CreateClass from "./components/CreateClass";
-import CreateSeries from "./components/CreateSeries";
 import Master_Detail from "./components/Master_Detail";
 import List from "./components/List";
 import Grid from "./components/Grid";
@@ -45,7 +44,6 @@ const App = () => {
           <Route path = "/Login" component = { LogIn } />
           <Route path = "/SignUp" component = { SignUp } />
           <PrivateRoute path = "/CreateClass" component = { CreateClass } />
-          <PrivateRoute path = "/CreateSeries" component = {CreateSeries }/>
         </Switch>
       </React.Fragment>
     );
