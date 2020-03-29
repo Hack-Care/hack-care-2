@@ -32,7 +32,7 @@
     "react-datepicker": "2.14.1",
     "react-datetime-picker": "^2.9.0",
     "react-dom": "16.12.0",
-    "react-router-dom": "4.3.1",
+    "react-router-dom": "5.1.2",
     "react-scripts": "3.2.0",
     "validator": "^13.0.0"
   },
@@ -45,10 +45,11 @@
   },
   "scripts": {
     "postinstall": "yarn build || npm run build",
-    "start": "concurrently \"yarn start-frontend || npm run start-frontend\" \"yarn start-backend || npm run start-backend\"",
+    "start": "yarn start-backend || npm run start-backend",
+    "start-dev": "concurrently \"yarn start-frontend || npm run start-frontend\" \"yarn start-backend || npm run start-backend\"",
     "start-backend": "node server/server.js",
     "start-frontend": "react-scripts start",
-    "start-dev": "concurrently \"yarn start-frontend\" \"yarn watch-backend\"",
+    "start-dev-svwatch": "concurrently \"yarn start-frontend\" \"yarn watch-backend\"",
     "watch-backend": "nodemon --inspect server/server.js --watch server --watch node_modules",
     "build": "node ./buildScript",
     "test": "react-scripts test",
