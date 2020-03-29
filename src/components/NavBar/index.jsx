@@ -53,14 +53,14 @@ const NavBar = (navbarProps) => {
         </div>
         :
         <div className="collapse navbar-collapse" id="userAccountLogin">
-          <ul className="navbar-nav ml-auto">
+          {/* <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link className="nav-link" to={"/LogIn"}>Login</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={"/SignUp"}>Sign up</Link>
             </li>
-          </ul>
+          </ul> */}
         </div>
         }
         
