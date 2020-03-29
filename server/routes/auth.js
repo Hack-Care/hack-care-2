@@ -55,7 +55,16 @@ router.post('/sign-up', async (req, res, next) => {
   }
 });
 
-router.post('/login', passport.authenticate('local', { successRedirect: '/' }));
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect(user.interests.includes('instructor') ? '/CreateClass?routeFrom=Login' : '/');
+    });
+  })(req, res, next);
+});
 
 router.post('/logout', (req, res) => {
   req.logout();

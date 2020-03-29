@@ -28,7 +28,7 @@ const App = () => {
 
     const PrivateRoute = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
-        userEmail
+        userEmail || window.location.search.includes('routeFrom=Login')
           ? <Component {...props} userEmail = {userEmail}/>
           : <Redirect to='/Login' />
       )} />
