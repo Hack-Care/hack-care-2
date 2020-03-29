@@ -2,8 +2,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Blank from "./components/Blank";
 import CreateClass from "./components/CreateClass";
 import CreateSeries from "./components/CreateSeries";
 import Master_Detail from "./components/Master_Detail";
@@ -12,6 +10,7 @@ import Grid from "./components/Grid";
 import LogIn from "./components/User/Login";
 import SignUp from "./components/User/SignUp";
 import LandingPage from "./components/LandingPage"
+import { TopicSearch } from "./components/topicSearch/TopicSearch";
 import CONSTANTS from './constants';
 
 //TODO Web Template Studio: Add routes for your new pages here.
@@ -40,16 +39,14 @@ const App = () => {
       <React.Fragment>
         <NavBar userEmail={userEmail} setUserEmail={setUserEmail} />
         <Switch>
-          <Route exact path = "/" component = {() => <LandingPage userEmail={userEmail} setUserEmail={setUserEmail} />} />
-          <Route path = "/Master_Detail" component = { Master_Detail } />
-          <PrivateRoute path = "/List" component = { List } />
-          <PrivateRoute path = "/Grid" component = { Grid } />
+          <Route exact path = "/" component = {() => 
+            userEmail ? <TopicSearch /> : <LandingPage />
+          } />
           <Route path = "/Login" component = { LogIn } />
           <Route path = "/SignUp" component = { SignUp } />
           <PrivateRoute path = "/CreateClass" component = { CreateClass } />
           <PrivateRoute path = "/CreateSeries" component = {CreateSeries }/>
         </Switch>
-        {/* <Footer /> */}
       </React.Fragment>
     );
 }

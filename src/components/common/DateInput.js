@@ -2,14 +2,7 @@ import * as React from 'react';
 import '../../stylesheets/index.scss'
 import DatePicker from "react-datepicker/es";
 
-export interface DateInputProps {
-    dateTitle: string;
-    className?: string;
-}
-export class DateInput extends React.Component<DateInputProps> {
-    constructor(props){
-        super(props)
-    }
+export class DateInput extends React.Component {
 
     state = {
         startDate: new Date()

@@ -1,16 +1,7 @@
 import * as React from 'react'
 import {User} from "../../models/User";
 
-export interface WelcomeMessageProps {
-    user: User;
-    welcomeMessageClass: string;
-}
-
-export class WelcomeMessage extends React.Component<WelcomeMessageProps> {
-    constructor(props){
-        super(props)
-    }
-
+export class WelcomeMessage extends React.Component {
     render() {
         const {user, welcomeMessageClass} = this.props;
         const welcomeMessage = `Welcome ${user.firstName}`;

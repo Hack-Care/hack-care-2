@@ -1,11 +1,5 @@
 import * as React from 'react'
-import {Course} from "../../models/Course";
 import {UIConstants} from "../../UIConstants";
-
-export interface ClassListFormProps {
-    classList: Course[];
-    isStudent: boolean;
-}
 
 export const CourseFormRow = ({content}) => {
     return (
@@ -13,11 +7,7 @@ export const CourseFormRow = ({content}) => {
     )
 };
 
-export class ClassListForm extends React.Component<ClassListFormProps> {
-    constructor(props) {
-        super(props)
-    }
-
+export class ClassListForm extends React.Component {
     render() {
         const {classList, isStudent} = this.props;
         return (
