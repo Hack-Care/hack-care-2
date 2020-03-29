@@ -10,7 +10,6 @@ import { HttpLink } from "apollo-link-http";
 import {ApolloProvider} from "@apollo/react-hooks";
 import {BrowserRouter} from "react-router-dom";
 import Cookies from 'js-cookie';
-import {TopicSearch} from "./components/topicSearch/TopicSearch";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -32,10 +31,9 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <BrowserRouter>
-        {/*<ApolloProvider client={client}>*/}
-        {/*  <App />*/}
-        {/*</ApolloProvider>*/}
-        <TopicSearch/>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
     </BrowserRouter>,
   document.getElementById("root")
 );
