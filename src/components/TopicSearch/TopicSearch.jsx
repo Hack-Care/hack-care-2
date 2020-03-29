@@ -23,8 +23,8 @@ const TopicSearch = () => {
       topic,
       topicClass,
       hostName,
-      startDate: startDate.toString(),
-      endDate: endDate.toString()
+      startDate: moment(startDate).format(),
+      endDate: moment(endDate).format()
     };
     if (called) refetch(variables);
     else getClasses({variables});
