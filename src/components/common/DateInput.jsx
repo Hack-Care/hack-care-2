@@ -12,8 +12,6 @@ const DateInput = ({ dateTitle }) => {
         </td>
       </table>
     </div>
-
-
   )
 }
 
