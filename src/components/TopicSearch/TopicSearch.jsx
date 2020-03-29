@@ -6,7 +6,7 @@ import { UIConstants } from "../../UIConstants";
 import ClassListForm from "../common/ClassListForm";
 import DateInput from "../common/DateInput";
 import 'react-datepicker/dist/react-datepicker.css';
-import {useLazyQuery} from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import QUERIES from "../../graphqlQueries";
 
 const TopicSearch = () => {
@@ -15,17 +15,20 @@ const TopicSearch = () => {
   const [hostName, setHostName] = useState();
   const [startDate, setStartDate] = useState(moment().toDate());
   const [endDate, setEndDate] = useState(moment().add(1, 'months').toDate());
-  const [loadClasses, {error: queryError, data: queryData, loading}] = useLazyQuery(QUERIES.GET_CLASSES, {
-    variables: {
-      topic: topic,
-      topicClass: topicClass,
-      hostName: hostName,
+  const [getClasses, {error: queryError, data: queryData, loading, called, refetch}] = useLazyQuery(QUERIES.GET_CLASSES);
+  if (queryError) console.log(queryError);
+
+  const search = () => {
+    const variables = {
+      topic,
+      topicClass,
+      hostName,
       startDate: startDate.toString(),
       endDate: endDate.toString()
-    }
-  });
-  loadClasses();
-  if (queryError) console.log(queryError);
+    };
+    if (called) refetch(variables);
+    else getClasses({variables});
+  }
 
   return (
     <div className="container">
@@ -38,9 +41,12 @@ const TopicSearch = () => {
             <SearchItem searchTitle={UIConstants.INSTRUCTOR} onChange={e => setHostName(e.target.value)} />
             <DateInput dateTitle={UIConstants.START_DATE} selected={startDate} onChange={setStartDate} />
             <DateInput dateTitle={UIConstants.END_DATE} selected={endDate} onChange={setEndDate} />
+            <div className="d-flex justify-content-end">
+              <button className='btn btn-primary' onClick={search}>Search</button>
+            </div>
           </div>
           <div className="col-md-8">
-            <ClassListForm classList={queryData} loading={loading} />
+            <ClassListForm classList={queryData} loading={loading} called={called} />
           </div>
         </div>
       </section>
