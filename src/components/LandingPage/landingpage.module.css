@@ -1,0 +1,15 @@
+.landingContainer {
+  text-align: center;
+
+}
+.welcomeText {
+  margin: 5%;
+
+}
+.welcomeSubtitle {
+  margin: 1%;
+  font-weight: bold;
+}
+.homeButton {
+  margin: 1%;
+}

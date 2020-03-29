@@ -11,6 +11,7 @@ import List from "./components/List";
 import Grid from "./components/Grid";
 import LogIn from "./components/User/Login";
 import SignUp from "./components/User/SignUp";
+import LandingPage from "./components/LandingPage"
 import CONSTANTS from './constants';
 
 //TODO Web Template Studio: Add routes for your new pages here.
@@ -39,7 +40,7 @@ const App = () => {
       <React.Fragment>
         <NavBar userEmail={userEmail} setUserEmail={setUserEmail} />
         <Switch>
-          <Route exact path = "/" component = { Blank } />
+          <Route exact path = "/" component = {() => <LandingPage userEmail={userEmail} setUserEmail={setUserEmail} />} />
           <Route path = "/Master_Detail" component = { Master_Detail } />
           <PrivateRoute path = "/List" component = { List } />
           <PrivateRoute path = "/Grid" component = { Grid } />
@@ -48,7 +49,7 @@ const App = () => {
           <PrivateRoute path = "/CreateClass" component = { CreateClass } />
           <PrivateRoute path = "/CreateSeries" component = {CreateSeries }/>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </React.Fragment>
     );
 }
