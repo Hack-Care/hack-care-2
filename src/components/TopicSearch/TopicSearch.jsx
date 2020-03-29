@@ -5,30 +5,17 @@ import { UIConstants } from "../../UIConstants";
 import ClassListForm from "../common/ClassListForm";
 import DateInput from "../common/DateInput";
 import 'react-datepicker/dist/react-datepicker.css';
+import {useQuery} from "@apollo/react-hooks";
+import QUERIES from "../../graphqlQueries";
 
-const TopicSearch = () => {
-  // const {classList, isStudent} = this.props;
-  const classList = [
-    {
-      topic: "Beginner's Java",
-      instructor: 'Liwei',
-      courseTime: new Date(2020, 4, 3, 8, 0, 0, 0),
-      duration: "30 mins"
-    },
-    {
-      topic: "Javascript",
-      instructor: 'Trung',
-      courseTime: new Date(2020, 4, 3, 8, 0, 0, 0),
-      duration: "30 mins"
-    },
-    {
-      topic: "Python",
-      instructor: 'Quy',
-      courseTime: new Date(2020, 4, 3, 8, 0, 0, 0),
-      duration: "30 mins"
-    }
-  ];
-  const isStudent = true;
+const TopicSearch = (props) => {
+  const {error: queryError, data: queryData} = useQuery(QUERIES.GET_CLASSES);
+  const {error, data} = useQuery(QUERIES.GET_USER_BASIC_INFO, {
+    variables: { email: props.userEmail }
+  });
+  if (error) console.log(error);
+  if (queryError) console.log(queryError);
+  const isStudent = data && data.user.interests.includes('student');
 
   return (
     <div className="container">
@@ -46,7 +33,7 @@ const TopicSearch = () => {
             </div>
           </div>
           <div className="col-md-8">
-            <ClassListForm classList={classList} isStudent={isStudent} />
+            <ClassListForm classList={queryData} isStudent={isStudent} />
           </div>
         </div>
       </section>

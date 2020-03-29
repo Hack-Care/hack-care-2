@@ -36,7 +36,7 @@ const App = () => {
         <NavBar userEmail={userEmail} setUserEmail={setUserEmail} />
         <Switch>
           <Route exact path = "/" component = {() => 
-            userEmail ? <TopicSearch /> : <LandingPage />
+            userEmail ? <TopicSearch userEmail={userEmail}/> : <LandingPage />
           } />
           <Route path = "/Login" component = { LogIn } />
           <Route path = "/SignUp" component = { SignUp } />
