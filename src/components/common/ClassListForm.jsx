@@ -1,32 +1,30 @@
 import React from 'react'
 import { UIConstants } from "../../UIConstants";
-import './classlistform.css';
-
-const CourseFormRow = ({ content }) => {
-  return (
-    <td className='tableCell'>{content}</td>
-  )
-};
 
 const ClassListForm = ({ classList, isStudent }) => {
+  const { TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE } = UIConstants;
   return (
-    <table className='formTable'>
+    <table className='table table-sm table-striped'>
+      <thead>
       <tr className='formHeader'>
-        <CourseFormRow content={UIConstants.TOPIC_TITLE} />
-        {isStudent && <CourseFormRow content={UIConstants.INSTRUCTOR_TITLE} />}
-        <CourseFormRow content={UIConstants.DATE_TIME_TITLE} />
-        <CourseFormRow content={UIConstants.DURATION_TITLE} />
+        <th>{TOPIC_TITLE}</th>
+        {isStudent && <th>{INSTRUCTOR_TITLE}</th>}
+        <th>{DATE_TIME_TITLE}</th>
+        <th>{DURATION_TITLE}</th>
       </tr>
-      {classList && classList.map((course, index) =>
-        <tr className={index % 2 === 0 ? 'formRow' : 'formRowGray'}>
-          <CourseFormRow content={course.topic} />
+      </thead>
+      <tbody>
+      {classList && classList.map(({ topic, instructor, courseTime, duration }) =>
+        <tr>
+          <td>{topic}</td>
           {isStudent &&
-            <CourseFormRow content={course.instructor} />
+            <td>{instructor}</td>
           }
-          <CourseFormRow content={course.courseTime.toLocaleDateString()} />
-          <CourseFormRow content={course.duration} />
+          <td>{courseTime.toLocaleDateString()}</td>
+          <td>{duration}</td>
         </tr>
       )}
+      </tbody>
     </table>
   )
 }

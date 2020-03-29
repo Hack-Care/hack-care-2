@@ -1,11 +1,8 @@
 import React from 'react';
-import './headercomponent.css';
 
 const HeaderComponent = ({title}) => {
   return (
-    <div className='headerBar'>
-      <header className='headerTitle'>{title}</header>
-    </div>
+    <h2 class="text-center mt-3 mb-5">{title}</h2>
   )
 }
 

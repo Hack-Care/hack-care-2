@@ -1,5 +1,4 @@
 import React from 'react';
-import './welcomemessage.css';
 
 const WelcomeMessage = ({ user, welcomeMessageClass }) => {
   const welcomeMessage = `Welcome ${user.firstName}`;
