@@ -16,8 +16,8 @@ const ClassListForm = ({ classList, isStudent }) => {
       </tr>
       </thead>
       <tbody>
-      {classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }) =>
-        <tr>
+      {classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
+        <tr key={index}>
           <td>{topicClass}</td>
           <td>{topic}</td>
           {isStudent &&

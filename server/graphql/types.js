@@ -2,7 +2,13 @@ const types = `
   type Query {
     user(email: String!): User
     class(email: String!): Class
-    classes: [Class]
+    classes(
+      topic: String
+      topicClass: String
+      instructor: String
+      startDate: String
+      endDate: String
+    ): [Class]
   }
   
   type Mutation {

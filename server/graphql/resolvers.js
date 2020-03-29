@@ -1,5 +1,6 @@
 const mongo = require("../database/mongo");
 const mongodb = require("mongodb");
+const moment = require('moment');
 
 const resolvers = {
     Query: {
@@ -11,9 +12,19 @@ const resolvers = {
             const db = mongo.getDb();
             return await db.collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
         },
-        classes: async () => {
+        classes: async (_, data) => {
             const db = mongo.getDb();
-            return await db.collection('classes').find().toArray();
+            const query = {};
+            if (data.topicClass) query.topicClass = data.topicClass;
+            if (data.topic) query.topic = data.topic;
+            if (data.instructor) query.hostName = data.instructor;
+            const classes = await db.collection('classes').find(query).toArray();
+            // TODO should filter in DB query instead, for this maybe we need to store dateTime as Date
+            return classes.filter(c => {
+                if (data.startDate && moment(data.startDate).isAfter(moment(c.dateTime))) return false;
+                if (data.endDate && moment(data.endDate).isBefore(moment(c.dateTime))) return false;
+                return true;
+            });
         }
     },
     Mutation: {
