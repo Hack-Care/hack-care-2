@@ -4,6 +4,7 @@
     border-radius: 2em;
     height: 2em;
     margin-left: 2em;
+    padding-left: 0.5em;
 }
 
 .searchItem {
@@ -12,6 +13,6 @@
 
 .title {
     text-align: right;
-    width: 100px;
+    width: 15em;
 }
 

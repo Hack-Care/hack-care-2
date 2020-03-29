@@ -7,17 +7,7 @@ import {ClassListForm} from "../common/ClassListForm";
 import {Course} from "../../models/Course";
 import {DateInput} from "../common/DateInput";
 
-export interface ClassSearchProps {
-    searchTitle?: string;
-    className?: string;
-    classList?: Course[];
-    isStudent?: boolean;
-}
-export class TopicSearch extends React.Component<ClassSearchProps> {
-    constructor(props){
-        super(props)
-    }
-
+export class TopicSearch extends React.Component {
     render() {
         // const {classList, isStudent} = this.props;
         const classList = [

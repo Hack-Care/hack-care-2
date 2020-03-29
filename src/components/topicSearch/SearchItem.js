@@ -1,15 +1,7 @@
 import * as React from 'react';
 import '../../stylesheets/index.scss'
 
-export interface SearchItemProps {
-    searchTitle: string;
-    className?: string;
-}
-export class SearchItem extends React.Component<SearchItemProps> {
-    constructor(props){
-        super(props)
-    }
-
+export class SearchItem extends React.Component {
     render() {
         const { searchTitle } = this.props;
 

@@ -1,19 +1,8 @@
 ﻿import React from "react";
-import CONSTANTS from "../../constants";
-import Cookies from 'js-cookie';
 import { Link } from "react-router-dom";
 import styles from "./landingpage.module.css";
 
 const LandingPage = (landingPageProps) => {
-
-  const { userEmail, setUserEmail } = landingPageProps;
-
-  const handleLogout = () => {
-    fetch(CONSTANTS.ENDPOINT.LOGOUT, {method: 'POST', headers: {
-      "x-csrf-token": Cookies.get('x-csrf-token')
-    }});
-    setUserEmail(null);
-  }
 
   return (
     <div className={styles.landingContainer}>
