@@ -26,16 +26,7 @@ const NavBar = (navbarProps) => {
         </Link>
         <div className="navbar-nav">
           <Link className="nav-item nav-link active" to="/">
-            Blank
-          </Link>
-          <Link className="nav-item nav-link active" to="Master_Detail">
-            Master_Detail
-          </Link>
-          <Link className="nav-item nav-link active" to="List">
-            List
-          </Link>
-          <Link className="nav-item nav-link active" to="Grid">
-            Grid
+            Home
           </Link>
           <Link className="nav-item nav-link active" to="CreateClass">
             Create class

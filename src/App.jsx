@@ -42,10 +42,6 @@ const App = () => {
           <Route exact path = "/" component = {() => 
             userEmail ? <TopicSearch /> : <LandingPage />
           } />
-          <Route path = "/Search" component = { TopicSearch } />
-          <Route path = "/Master_Detail" component = { Master_Detail } />
-          <PrivateRoute path = "/List" component = { List } />
-          <PrivateRoute path = "/Grid" component = { Grid } />
           <Route path = "/Login" component = { LogIn } />
           <Route path = "/SignUp" component = { SignUp } />
           <PrivateRoute path = "/CreateClass" component = { CreateClass } />
