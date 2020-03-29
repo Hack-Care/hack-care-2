@@ -5,6 +5,7 @@ const MUTATIONS = {};
 MUTATIONS.CREATE_CLASS = gql`    
     mutation createClass (
         $host: ID!
+        $hostName: String!
         $dateTime: String!
         $duration: String!
         $link: String!
@@ -14,6 +15,7 @@ MUTATIONS.CREATE_CLASS = gql`
     ) {
         createClass(
             host: $host
+            hostName: $hostName
             dateTime: $dateTime
             duration: $duration
             link: $link

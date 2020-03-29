@@ -31,6 +31,7 @@ const resolvers = {
             const db = mongo.getDb();
             const result = await db.collection('classes').insertOne({
                 "host": data.host,
+                "hostName": data.hostName,
                 "dateTime": data.dateTime,
                 "duration": data.duration,
                 "link": data.link,

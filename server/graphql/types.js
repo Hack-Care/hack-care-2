@@ -18,6 +18,7 @@ const types = `
     
     createClass(
       host: ID!
+      hostName: String!
       dateTime: String!
       duration: String!
       link: String!
@@ -47,6 +48,7 @@ const types = `
   type Class {
     _id: ID!
     host: ID!
+    hostName: String!
     dateTime: String!
     duration: String!
     link: String!
