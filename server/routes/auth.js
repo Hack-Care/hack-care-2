@@ -24,7 +24,8 @@ router.post('/sign-up', async (req, res, next) => {
       title: req.body.title,
       occupation: req.body.occupation,
       intro: req.body.intro,
-      interests: typeof req.body.interests === 'string' ? [req.body.interests] : req.body.interests 
+      interests: typeof req.body.interests === 'string' ? [req.body.interests] : req.body.interests,
+      classes: []
     }
   }
 
