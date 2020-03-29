@@ -1,7 +1,7 @@
 import React from 'react'
 import { UIConstants } from "../../UIConstants";
 
-const ClassListForm = ({ classList, isStudent }) => {
+const ClassListForm = ({ classList }) => {
   const { TOPIC_CLASS, TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE, DESCRIPTION } = UIConstants;
   return (
     <table className='table table-sm table-striped'>
@@ -9,7 +9,7 @@ const ClassListForm = ({ classList, isStudent }) => {
       <tr className='formHeader'>
         <th>{TOPIC_CLASS}</th>
         <th>{TOPIC_TITLE}</th>
-        {isStudent && <th>{INSTRUCTOR_TITLE}</th>}
+        <th>{INSTRUCTOR_TITLE}</th>
         <th>{DATE_TIME_TITLE}</th>
         <th>{DURATION_TITLE}</th>
           <th>{DESCRIPTION}</th>
@@ -20,9 +20,7 @@ const ClassListForm = ({ classList, isStudent }) => {
         <tr key={index}>
           <td>{topicClass}</td>
           <td>{topic}</td>
-          {isStudent &&
-            <td>{hostName}</td>
-          }
+          <td>{hostName}</td>
           <td>{new Date(Date.parse(dateTime)).toLocaleString()}</td>
           <td>{duration}</td>
             <td>{description}</td>
