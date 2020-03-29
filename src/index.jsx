@@ -13,14 +13,13 @@ import Cookies from 'js-cookie';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: "http://localhost:3001/graphql"
+    uri: "/graphql"
 });
 const authLink = setContext((_, { headers }) => {
-    const token = Cookies.getItem('token');
     return {
         headers: {
             ...headers,
-            authorization: token ? `Bearer ${token}` : ""
+            'x-csrf-token': Cookies.get('x-csrf-token')
         }
     }
 });
