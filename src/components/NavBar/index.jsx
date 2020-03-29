@@ -24,14 +24,22 @@ const NavBar = (navbarProps) => {
         <Link className="navbar-brand" to="/">
           hack_care_2
         </Link>
-        <div className="navbar-nav">
-          <Link className="nav-item nav-link active" to="/">
-            Home
-          </Link>
-          <Link className="nav-item nav-link active" to="CreateClass">
-            Create class
-          </Link>
-        </div>
+        {
+          userEmail ?
+            <div className="navbar-nav">
+              <Link className="nav-item nav-link active" to="/">
+                Home
+              </Link>
+              <Link className="nav-item nav-link active" to="CreateClass">
+                Create class
+              </Link>
+            </div> :
+            <div className="navbar-nav">
+              <Link className="nav-item nav-link active" to="/">
+                Home
+              </Link>
+            </div>
+        }
         {userEmail ?
         <div className="collapse navbar-collapse" id="userAccountLogin">
           <ul className="navbar-nav ml-auto">
