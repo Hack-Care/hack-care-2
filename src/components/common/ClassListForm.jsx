@@ -2,7 +2,7 @@ import React from 'react'
 import { UIConstants } from "../../UIConstants";
 import moment from 'moment';
 
-const ClassListForm = ({ classList, loading, called }) => {
+const ClassListForm = ({ classList, loading, called, search }) => {
   const { REGISTER, TOPIC_CLASS, TOPIC_TITLE, INSTRUCTOR_TITLE, DATE_TIME_TITLE, DURATION_TITLE, DESCRIPTION } = UIConstants;
 
   const getRows = () => {
@@ -11,19 +11,25 @@ const ClassListForm = ({ classList, loading, called }) => {
         <tr>
           <td colSpan="7">Loading...</td>
         </tr>);
-    } else if (!called) {
+    } else if (search && !called) {
       return (
         <tr>
           <td colSpan="7" className="text-center">Click Search button to retrieve lessons</td>
         </tr>);
-    } else {
+    } else if (!search && (!classList || classList.hostingClasses.length === 0)) {
       return (
-        classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
+        <tr>
+          <td colSpan="7" className="text-center">You have not created any classes</td>
+        </tr>);
+    } else {
+      const classes = search ? classList.classes : classList.hostingClasses;
+      return (
+        classes && classes.map(({ hostName, dateTime, duration, topicClass, topic, description }, index) =>
           <tr key={index}>
-            <td><input name={topicClass} type="checkbox" /></td>
+            {search && <td><input name={topicClass} type="checkbox" /></td>}
             <td>{topicClass}</td>
             <td>{topic}</td>
-            <td>{hostName}</td>
+            {search && <td>{hostName}</td>}
             <td>{moment(dateTime).format('MMM Do YYYY, h:mm a')}</td>
             <td>{duration}</td>
             <td>{description}</td>
@@ -36,10 +42,10 @@ const ClassListForm = ({ classList, loading, called }) => {
     <table className='table table-sm table-striped'>
       <thead>
         <tr className='formHeader'>
-          <th>{REGISTER}</th>
+          {search && <th>{REGISTER}</th>}
           <th>{TOPIC_CLASS}</th>
           <th>{TOPIC_TITLE}</th>
-          <th>{INSTRUCTOR_TITLE}</th>
+          {search && <th>{INSTRUCTOR_TITLE}</th>}
           <th>{DATE_TIME_TITLE}</th>
           <th>{DURATION_TITLE}</th>
           <th>{DESCRIPTION}</th>

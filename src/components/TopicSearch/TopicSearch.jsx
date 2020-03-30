@@ -46,7 +46,7 @@ const TopicSearch = () => {
             </div>
           </div>
           <div className="col-md-8">
-            <ClassListForm classList={queryData} loading={loading} called={called} />
+            <ClassListForm classList={queryData} loading={loading} called={called} search={true}/>
           </div>
         </div>
       </section>
