@@ -4,16 +4,18 @@ const mongodb = require("mongodb");
 const resolvers = {
     Query: {
         user: async (_, data) => {
-            const db = mongo.getDb();
-            return await db.collection('users').findOne({email: data.email}).then(res => {return res});
+            return await mongo.getDb().collection('users').findOne({email: data.email}).then(res => {return res});
         },
         class: async (_, data) => {
-            const db = mongo.getDb();
-            return await db.collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
+            return await mongo.getDb().collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
         },
         classes: async () => {
+            return await mongo.getDb().collection('classes').find().toArray();
+        },
+        hostingClasses: async (_, data) => {
             const db = mongo.getDb();
-            return await db.collection('classes').find().toArray();
+            const user = await db.collection('users').findOne({email: data.email}).then(res => {return res});
+            return await db.collection('classes').find({_id: { $in: user.classes}}).toArray();
         }
     },
     Mutation: {

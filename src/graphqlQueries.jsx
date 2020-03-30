@@ -29,12 +29,40 @@ QUERIES.GET_USER_BASIC_INFO = gql`
     }
 `;
 
+QUERIES.GET_ALL_USER_INFO = gql`
+    query ($email: String!) {
+        user(email: $email) {
+            _id
+            firstName
+            lastName
+            title
+            occupation
+            intro
+            interests
+        }
+    }
+`;
+
 QUERIES.GET_CLASSES = gql`
     query {
         classes {
             _id
             host
             hostName
+            dateTime
+            duration
+            link
+            topicClass
+            topic
+            description
+        }
+    }
+`;
+
+QUERIES.GET_HOSTING_CLASSES = gql`
+    query ($email: String!){
+        hostingClasses(email: $email) {
+            _id
             dateTime
             duration
             link

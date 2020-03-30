@@ -3,6 +3,7 @@ const types = `
     user(email: String!): User
     class(email: String!): Class
     classes: [Class]
+    hostingClasses(email: String!): [Class]
   }
   
   type Mutation {
