@@ -2,6 +2,7 @@ const types = `
   type Query {
     user(email: String!): User
     class(email: String!): Class
+    classes: [Class]
   }
   
   type Mutation {
@@ -14,10 +15,12 @@ const types = `
       intro: String
       profilePicture: String
       classes: [ID]!
+      interests: [String]!
     ): Boolean
     
     createClass(
       host: ID!
+      hostName: String!
       dateTime: String!
       duration: String!
       link: String!
@@ -42,11 +45,13 @@ const types = `
     intro: String
     profilePicture: String
     classes: [ID]!
+    interests: [String]!
   }
   
   type Class {
     _id: ID!
     host: ID!
+    hostName: String!
     dateTime: String!
     duration: String!
     link: String!

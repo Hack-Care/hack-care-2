@@ -18,6 +18,7 @@ const CreateClass = (props) => {
         e.preventDefault();
         createClass({variables: {
             host: queryData.user._id,
+            hostName: queryData.user.firstName + " " + queryData.user.lastName,
             dateTime: dateTimeField,
             duration: e.target.duration.value,
             link: e.target.link.value,
