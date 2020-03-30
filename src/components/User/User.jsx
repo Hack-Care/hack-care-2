@@ -54,7 +54,7 @@ const User = (props) => {
           </div>
           <div className="col-md-8">
             <HeaderComponent title={UIConstants.USER_CLASS_TITLE} />
-            <ClassListForm classList={data.hostingClasses} />
+            <ClassListForm classList={data} search={false}/>
           </div>
         </div>
       </section>
