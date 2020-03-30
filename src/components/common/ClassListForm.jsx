@@ -9,18 +9,22 @@ const ClassListForm = ({ classList }) => {
       <tr className='formHeader'>
         <th>{TOPIC_CLASS}</th>
         <th>{TOPIC_TITLE}</th>
-        <th>{INSTRUCTOR_TITLE}</th>
+        {
+          classList[0].hostName !== undefined && <th>{INSTRUCTOR_TITLE}</th>
+        }
         <th>{DATE_TIME_TITLE}</th>
         <th>{DURATION_TITLE}</th>
           <th>{DESCRIPTION}</th>
       </tr>
       </thead>
       <tbody>
-      {classList && classList.classes.map(({ hostName, dateTime, duration, topicClass, topic, description }) =>
+      {classList && classList.map(({ hostName, dateTime, duration, topicClass, topic, description }) =>
         <tr>
           <td>{topicClass}</td>
           <td>{topic}</td>
-          <td>{hostName}</td>
+          {
+            hostName && <td>{hostName}</td>
+          }
           <td>{new Date(Date.parse(dateTime)).toLocaleString()}</td>
           <td>{duration}</td>
             <td>{description}</td>
