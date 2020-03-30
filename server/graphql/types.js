@@ -2,7 +2,13 @@ const types = `
   type Query {
     user(email: String!): User
     class(email: String!): Class
-    classes: [Class]
+    classes(
+      topic: String
+      topicClass: String
+      hostName: String
+      startDate: String
+      endDate: String
+    ): [Class]
     hostingClasses(email: String!): [Class]
   }
   

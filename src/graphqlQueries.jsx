@@ -44,8 +44,20 @@ QUERIES.GET_ALL_USER_INFO = gql`
 `;
 
 QUERIES.GET_CLASSES = gql`
-    query {
-        classes {
+    query (
+        $topic: String
+        $topicClass: String
+        $hostName: String
+        $startDate: String
+        $endDate: String
+    ) {
+        classes(
+            topic: $topic
+            topicClass: $topicClass
+            hostName: $hostName
+            startDate: $startDate
+            endDate: $endDate
+        ) {
             _id
             host
             hostName

@@ -44,9 +44,6 @@ app.use(passport.session());
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
-const indexRouter = require("./routes/index");
-
-app.use("/api", indexRouter);
 app.all("*", (req, res) => {
   res.cookie('x-csrf-token', req.csrfToken());
   res.sendFile("build/index.html", { root: __dirname });
