@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 import DateTimePicker from 'react-datetime-picker'
 import Cookies from "js-cookie";
 import {useQuery, useMutation} from "@apollo/react-hooks";
@@ -7,6 +8,7 @@ import MUTATIONS from "../../graphqlMutations";
 
 const CreateClass = (props) => {
     const [dateTimeField, setDateTimeField] = useState("");
+    const history = useHistory();
 
     const handleChange = (e) => {
         setDateTimeField(e);
@@ -26,12 +28,15 @@ const CreateClass = (props) => {
             topic: e.target.topic.value,
             description: e.target.description.value
         }});
-        document.location.href="/";
     };
     const {error: queryError, data: queryData} = useQuery(QUERIES.GET_USER_BASIC_INFO, {
         variables: { email: props.userEmail }
     });
-    const [createClass] = useMutation(MUTATIONS.CREATE_CLASS);
+    const [createClass] = useMutation(MUTATIONS.CREATE_CLASS, {
+      onCompleted: () => {
+        history.push("/");
+      }
+    });
     if (queryError) {
         console.log(queryError)
     }
