@@ -8,14 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {useQuery} from "@apollo/react-hooks";
 import QUERIES from "../../graphqlQueries";
 
-const TopicSearch = (props) => {
+const TopicSearch = () => {
   const {error: queryError, data: queryData} = useQuery(QUERIES.GET_CLASSES);
-  const {error, data} = useQuery(QUERIES.GET_USER_BASIC_INFO, {
-    variables: { email: props.userEmail }
-  });
-  if (error) console.log(error);
   if (queryError) console.log(queryError);
-  const isStudent = data && data.user.interests.includes('student');
 
   return (
     <div className="container">
@@ -33,7 +28,7 @@ const TopicSearch = (props) => {
             </div>
           </div>
           <div className="col-md-8">
-            <ClassListForm classList={queryData} isStudent={isStudent} />
+            <ClassListForm classList={queryData} />
           </div>
         </div>
       </section>
