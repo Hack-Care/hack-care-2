@@ -1,5 +1,6 @@
 export class UIConstants {
     static CLASS_SEARCH_TITLE = `What class would you like to sign up for?`;
+    static USER_CLASS_TITLE = `Here are the classes that you are hosting`;
     static TOPIC_CLASS = 'Topic class';
     static TOPIC = `Topic`;
     static INSTRUCTOR = 'Instructor';

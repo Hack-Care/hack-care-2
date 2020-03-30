@@ -8,6 +8,7 @@ import SignUp from "./components/User/SignUp";
 import LandingPage from "./components/LandingPage"
 import TopicSearch from "./components/TopicSearch/TopicSearch";
 import CONSTANTS from './constants';
+import User from "./components/User/User";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
           } />
           <Route path = "/Login" component = { LogIn } />
           <Route path = "/SignUp" component = { SignUp } />
+          <PrivateRoute path = "/User" component={ User } />
           <PrivateRoute path = "/CreateClass" component = { CreateClass } />
         </Switch>
       </React.Fragment>
