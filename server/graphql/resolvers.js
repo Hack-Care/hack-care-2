@@ -5,12 +5,10 @@ const moment = require('moment');
 const resolvers = {
     Query: {
         user: async (_, data) => {
-            const db = mongo.getDb();
-            return await db.collection('users').findOne({email: data.email}).then(res => {return res});
+            return await mongo.getDb().collection('users').findOne({email: data.email}).then(res => {return res});
         },
         class: async (_, data) => {
-            const db = mongo.getDb();
-            return await db.collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
+            return await mongo.getDb().collection('classes').findOne({_id: new mongodb.ObjectID(data.id)}).then(res => { return res });
         },
         classes: async (_, data) => {
             const db = mongo.getDb();
@@ -25,6 +23,11 @@ const resolvers = {
                 if (data.endDate && moment(data.endDate).isBefore(moment(c.dateTime))) return false;
                 return true;
             });
+        },
+        hostingClasses: async (_, data) => {
+            const db = mongo.getDb();
+            const user = await db.collection('users').findOne({email: data.email}).then(res => {return res});
+            return await db.collection('classes').find({_id: { $in: user.classes}}).toArray();
         }
     },
     Mutation: {

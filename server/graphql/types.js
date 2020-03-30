@@ -9,6 +9,7 @@ const types = `
       startDate: String
       endDate: String
     ): [Class]
+    hostingClasses(email: String!): [Class]
   }
   
   type Mutation {

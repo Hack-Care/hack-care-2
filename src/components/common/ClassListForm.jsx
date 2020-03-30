@@ -37,7 +37,9 @@ const ClassListForm = ({ classList, loading, called }) => {
       <tr className='formHeader'>
         <th>{TOPIC_CLASS}</th>
         <th>{TOPIC_TITLE}</th>
-        <th>{INSTRUCTOR_TITLE}</th>
+        {
+          classList[0].hostName !== undefined && <th>{INSTRUCTOR_TITLE}</th>
+        }
         <th>{DATE_TIME_TITLE}</th>
         <th>{DURATION_TITLE}</th>
           <th>{DESCRIPTION}</th>

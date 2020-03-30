@@ -51,7 +51,7 @@ const TopicSearch = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
 export default TopicSearch;

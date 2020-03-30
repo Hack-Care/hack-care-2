@@ -44,9 +44,9 @@ const NavBar = (navbarProps) => {
         <div className="collapse navbar-collapse" id="userAccountLogin">
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <span className="align-middle">
+              <Link className="nav-item nav-link active" to="User">
                 {userEmail}
-              </span>
+              </Link>
             </li>
             <li className="nav-item">
               <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
