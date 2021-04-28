@@ -93,4 +93,4 @@ The front-end is served on http://localhost:3000/ and the back-end on http://loc
 - Express - https://expressjs.com/
 
 
-  This project was created using [Microsoft Web Template Studio](https://github.com/Microsoft/WebTemplateStudio).
+ This project was created using [Microsoft Web Template Studio](https://github.com/Microsoft/WebTemplateStudio).
